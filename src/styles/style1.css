@@ -1,0 +1,356 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;700&family=Roboto:wght@100;400;900&display=swap");
+
+/* Definição de variáveis de cores personalizadas */
+:root {
+  --red: #6d1a1a; /* Vermelho */
+  --green: #079807; /* Verde */
+
+  --tarefa-id-color: #5c7470; /* Cor do ID da Tarefa */
+  --tarefa-text-color: #8da0a4; /* Cor do Texto da Tarefa */
+  --categoria-text-color: #202723; /* Cor do Texto da Categoria */
+  --tarefa-background: #3a4741; /* Fundo da Tarefa */
+  --lista-tarefas-background: #b0bfc2; /* Fundo de onde estão todas as Tarefas */
+  --titulo-color: #202723; /* Cor do Título */
+}
+
+@font-face {
+  font-family: "Merriweather Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Estilo do corpo da página */
+body {
+  background-image: url("https://images.ecycle.com.br/wp-content/uploads/2022/01/13160207/marita-kavelashvili-ugnrXk1129g-unsplash-scaled.jpg.webp"); /* Imagem de fundo */
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilo do contêiner principal da aplicação */
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Estilo do cabeçalho da aplicação */
+.h1 {
+  text-align: center;
+  margin: 20px 0 0 0;
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  white-space: inherit;
+  background-color: var(--lista-tarefas-background);
+  padding: 10px;
+  border-radius: 50%;
+  color: black;
+  font-family: "Roboto";
+}
+
+/* Estilo da seção superior (top) */
+.top {
+  width: 50%;
+}
+
+/* Estilo da seção inferior (bottom) */
+.bottom {
+  font-size: 16px;
+  background-color: var(--lista-tarefas-background);
+  color: var(--color5); /* Texto Preto */
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px;
+  box-shadow: 0px 0px 20px 30px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+.content {
+  height: 75%;
+}
+
+/* Estilo da lista de tarefas (TODOs) */
+.todo-list {
+  min-width: 400px;
+
+  border-radius: 10px;
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Layout de 3 colunas */
+  grid-gap: 10px; /* Espaçamento entre colunas */
+}
+
+/* Estilo dos cards de tarefas (TODOs) */
+.todo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 200px;
+  min-height: 10em;
+  background-color: var(--tarefa-background);
+  border: solid 2px var(--lista-tarefas-background);
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px 0px;
+  break-inside: avoid;
+}
+.green {
+  border: 2px solid var(--green);
+}
+
+p {
+  font-family: "Roboto";
+}
+
+/* Estilize o texto das tarefas */
+.todo p.tarefa {
+  font-size: 18px;
+  color: var(--tarefa-text-color);
+}
+
+/* Estilize o texto das categorias */
+.todo p.categoria {
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--categoria-text-color);
+}
+.textos {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+/* Estilo do número associado à tarefa */
+.todo p.numero {
+  background-color: var(--tarefa-id-color);
+  width: 20px;
+  text-align: center;
+  border-radius: 50%;
+  margin: 0;
+}
+
+/* Estilo das opções (botões) em cada card de tarefa */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2em;
+}
+/* Estilo do botão "Delete" */
+.delete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 2em;
+  height: 2em;
+  background: var(--red);
+  border: 1px solid var(--red);
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 16px;
+  outline: 0;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  opacity: 0.8;
+  padding: 10px;
+  transform: scale(1);
+  transition: transform 0.3s;
+  animation: desapperButton 240ms linear;
+}
+.x-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1em;
+  height: 1em;
+  background-color: white;
+  -webkit-clip-path: polygon(
+    20% 0%,
+    0% 20%,
+    30% 50%,
+    0% 80%,
+    20% 100%,
+    50% 70%,
+    80% 100%,
+    100% 80%,
+    70% 50%,
+    100% 20%,
+    80% 0%,
+    50% 30%
+  );
+  clip-path: polygon(
+    20% 0%,
+    0% 20%,
+    30% 50%,
+    0% 80%,
+    20% 100%,
+    50% 70%,
+    80% 100%,
+    100% 80%,
+    70% 50%,
+    100% 20%,
+    80% 0%,
+    50% 30%
+  );
+}
+
+.remove {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+/* Efeitos do botão "Delete" ao passar o mouse ou clicar */
+.delete:hover,
+.delete:active {
+  animation: apperButton 240ms linear;
+}
+.delete:active {
+  background-color: var(--red);
+  color: white;
+  opacity: 0.5;
+  transform: translateX(1px) translateY(1px);
+}
+/* Efeito de opacidade do botão "Delete" quando clicado */
+
+.delete:hover .x-icon {
+  display: none;
+}
+
+.delete:hover .remove {
+  display: flex;
+}
+/* Fim Estilo do botão "Delete" */
+.complete {
+  width: 30px;
+  height: 30px;
+  color: var(--green);
+  border-radius: 10px;
+}
+
+.form-control {
+  font-family: system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: 1em auto;
+}
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: var(--color6);
+  width: 1em;
+  height: 1em;
+  border: 0.05em solid var(--color6);
+  border-radius: 0.15em;
+  display: grid;
+  place-content: center;
+}
+
+/* Estilo do controle do formulário que envolve o checkbox */
+.form-control {
+  font-family: system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: 1em auto;
+}
+
+/* Estilo do checkbox personalizado */
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: var(--color6); /* Texto Cinza Escuro */
+  width: 1em;
+  height: 0.9em;
+  border: 0.05em solid var(--color6); /* Borda Cinza Escuro */
+  border-radius: 0.15em;
+  display: grid;
+  place-content: center;
+}
+
+/* Estilo do efeito visual do checkbox */
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--green); /* Efeito de sombra ao marcar */
+}
+
+/* Estilo do checkbox marcado */
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+@keyframes apperButton {
+  0% {
+    opacity: 0;
+    width: 2em;
+  }
+  30% {
+    opacity: 0.3;
+    width: 3em;
+  }
+  60% {
+    opacity: 0.6;
+    width: 4em;
+  }
+  100% {
+    opacity: 1;
+    width: 5em;
+  }
+}
+
+@keyframes desapperButton {
+  0% {
+    opacity: 0;
+    width: 5em;
+  }
+  30% {
+    opacity: 0.3;
+    width: 4em;
+  }
+  50% {
+    opacity: 0.5;
+    width: 3em;
+  }
+  80% {
+    opacity: 0.8;
+    width: 1.8em;
+  }
+  100% {
+    opacity: 1;
+    width: 2em;
+  }
+}
