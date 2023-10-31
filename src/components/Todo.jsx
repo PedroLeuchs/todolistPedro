@@ -2,20 +2,20 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 
-const Todo = ({ todo, removeTodo, completeTodo, getBackgroundColor }) => {
+const Todo = ({  todo, removeTodo, completeTodo, getBackgroundColor }) => {
   return (
     <div className={`todo ${getBackgroundColor(todo)}`}>
       <div className="content">
         <p className={`numero`}>{todo.id}</p>
         <div className="textos">
-          <p className="tarefa">tarefa: {todo.text}</p>
-          <p className="categoria">categoria: {todo.category}</p>
+          <p className="tarefa">{todo.text}</p>
+          <p className="categoria">{todo.category}</p>
         </div>
       </div>
       <div className="options">
         <label className="form-control">
           <input
-            onChange={() => completeTodo(todo.id)}
+            onChange={(e) => completeTodo(todo.id)}
             type="checkbox"
             name="checkbox"
           />

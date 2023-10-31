@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;700&family=Roboto:wght@100;400;900&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;700&family=Oswald:wght@700&family=Roboto:wght@100;400;900&display=swap");
 /* Definição de variáveis de cores personalizadas */
 :root {
   --red: #6d1a1a; /* Vermelho */
@@ -7,78 +6,124 @@
 
   --tarefa-id-color: #5c7470; /* Cor do ID da Tarefa */
   --tarefa-text-color: #8da0a4; /* Cor do Texto da Tarefa */
-  --categoria-text-color: #202723; /* Cor do Texto da Categoria */
+  --categoria-text-color: #5d8a71; /* Cor do Texto da Categoria */
   --tarefa-background: #3a4741; /* Fundo da Tarefa */
   --lista-tarefas-background: #b0bfc2; /* Fundo de onde estão todas as Tarefas */
-  --titulo-color: #202723; /* Cor do Título */
+  --titulo-color: #648374; /* Cor do Título */
+  --border-color: #717476; /* Cor da Borda */
 }
 
 @font-face {
   font-family: "Merriweather Sans", sans-serif;
+  font-family: "Oswald", sans-serif;
   font-family: "Roboto", sans-serif;
 }
 
 /* Estilo do corpo da página */
 body {
-  background-image: url("https://images.ecycle.com.br/wp-content/uploads/2022/01/13160207/marita-kavelashvili-ugnrXk1129g-unsplash-scaled.jpg.webp"); /* Imagem de fundo */
+  background-image: url("../img/bg.jpg"); /* Imagem de fundo */
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
-
+#root {
+  width: 100%;
+  height: 100%;
+}
 /* Estilo do contêiner principal da aplicação */
 .app {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 3fr; /* Define as linhas, 1fr para o top e 3fr para o bottom */
+  grid-template-columns: 1fr;
+  grid-gap: 2em;
+  align-items: start;
+  justify-items: center;
 }
 
 /* Estilo do cabeçalho da aplicação */
 .h1 {
-  text-align: center;
-  margin: 20px 0 0 0;
-  font-size: 40px;
-  font-weight: 500;
-  letter-spacing: 3px;
-  white-space: inherit;
-  background-color: var(--lista-tarefas-background);
-  padding: 10px;
-  border-radius: 50%;
-  color: black;
-  font-family: "Roboto";
+  text-align: start;
+  margin: 0;
+  font-size: 90px;
+  font-weight: 700;
+  color: var(--titulo-color);
+  font-family: "Oswald", sans-serif;
 }
 
 /* Estilo da seção superior (top) */
 .top {
-  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  width: 100%;
+  height: 100%;
 }
 
 /* Estilo da seção inferior (bottom) */
 .bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 16px;
   background-color: var(--lista-tarefas-background);
-  color: var(--color5); /* Texto Preto */
+  color: var(
+    --categoria-text-color
+  ); /* Agora usamos a cor da categoria para o texto da barra de rolagem */
   border-radius: 10px;
-  padding: 10px;
-  margin: 20px;
-  box-shadow: 0px 0px 20px 30px rgba(0, 0, 0, 0.1); /* Sombra */
+  padding: 2em;
+  height: 80%;
+  width: 65%;
+  box-shadow: 0px 0px 20px 30px rgba(0, 0, 0, 0.1);
+  overflow-y: scroll;
 }
+
+/* Estilização da barra de rolagem para navegadores WebKit (Chrome, Safari) */
+/* Este bloco de código estiliza a barra de rolagem nas áreas com a classe .bottom */
+
+/* Define a largura da barra de rolagem */
+.bottom::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Estiliza a área de fundo da barra de rolagem */
+.bottom::-webkit-scrollbar-track {
+  /* Define a cor de fundo da área da barra de rolagem */
+  border: 1px solid var(--tarefa-text-color);
+  background: var(--tarefa-text-color);
+  /* Aplica um raio de borda arredondada para suavizar a aparência */
+  border-radius: 10px;
+}
+
+/* Estiliza o "polegar" da barra de rolagem, que é a parte móvel */
+.bottom::-webkit-scrollbar-thumb {
+  /* Define a cor de fundo do "polegar" usando a cor da categoria da tarefa */
+  background: var(--tarefa-id-color);
+  /* Aplica um raio de borda arredondada para suavizar a aparência */
+  border-radius: 10px;
+}
+
+/* Estiliza o "polegar" da barra de rolagem quando o cursor está sobre ele (hover) */
+.bottom::-webkit-scrollbar-thumb:hover {
+  /* Define a cor de fundo do "polegar" quando hover usando a cor do texto da tarefa */
+  background-color: var(--tarefa-background);
+}
+
 .content {
   height: 75%;
 }
 
 /* Estilo da lista de tarefas (TODOs) */
 .todo-list {
-  min-width: 400px;
-
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
-  margin: 20px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Layout de 3 colunas */
-  grid-gap: 10px; /* Espaçamento entre colunas */
+  grid-template-columns: repeat(4, 1fr); /* Layout de 3 colunas */
+  grid-gap: 1em; /* Espaçamento entre colunas */
 }
 
 /* Estilo dos cards de tarefas (TODOs) */
@@ -86,13 +131,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 200px;
-  min-height: 10em;
+  width: 13em;
+  min-height: 13em;
   background-color: var(--tarefa-background);
   border: solid 2px var(--lista-tarefas-background);
   padding: 10px;
   border-radius: 10px;
-  margin: 10px 0px;
   break-inside: avoid;
 }
 .green {
@@ -124,7 +168,14 @@ p {
 /* Estilo do número associado à tarefa */
 .todo p.numero {
   background-color: var(--tarefa-id-color);
-  width: 20px;
+  color: black;
+  width: 1.5em;
+  height: 1.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
   text-align: center;
   border-radius: 50%;
   margin: 0;
@@ -313,6 +364,167 @@ input[type="checkbox"]:checked::before {
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
 
+.functions {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 70%;
+  height: 100%;
+  padding: 0 3em 0 0;
+}
+.iconContainer {
+  width: 100%;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 0.5em;
+  padding: 0.2em;
+}
+
+.icon {
+  width: 1.8em;
+  height: 1.8em;
+  display: flex;
+  padding: 0.2em;
+}
+.circle1,
+.circle2,
+.circle3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.3em;
+  height: 2.3em;
+  padding: 0.2em;
+  background-color: var(--lista-tarefas-background);
+  border: 3px transparent var(--border-color);
+  border-radius: 25px 30px 25px 50px;
+}
+.circle1 {
+  animation: liquid 8s infinite;
+  animation-fill-mode: forwards;
+}
+.circle2 {
+  animation: liquid 12s infinite;
+  animation-fill-mode: forwards;
+}
+.circle3 {
+  animation: liquid 10s infinite;
+  animation-fill-mode: forwards;
+}
+/* Estilo da seção "search" */
+.search {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.inputSearch {
+  background-color: var(--lista-tarefas-background);
+  width: 30em;
+  height: 3em;
+  padding: 0 0.5em;
+  line-height: normal;
+  border: 1px solid #a6a6a6;
+  border-top-color: #949494;
+  border-radius: 10px;
+  box-shadow: 0 3px 0 rgb(255 255 255 / 50%), 0 3px 0 rgb(0 0 0 / 7%) inset;
+  outline: 0;
+  color: #111;
+  font-size: 20px;
+}
+.inputSearch:focus {
+  border-color: var(--categoria-text-color);
+  box-shadow: 0 0 10px 5px var(--categoria-text-color);
+}
+.filter {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  gap: 2em;
+  align-items: center;
+}
+.ordem {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5em;
+  flex-direction: column;
+}
+.ordem button {
+  background-color: var(--categoria-text-color);
+  border-radius: 100px;
+  box-shadow: 0 3px 0 rgb(255 255 255 / 50%), 0 3px 0 rgb(0 0 0 / 7%) inset;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.ordem button:hover {
+  box-shadow: 0 3px 0 rgb(255 255 255 / 50%), 0 3px 0 rgb(0 0 0 / 7%) inset;
+  transform: scale(1.05);
+}
+.select-box {
+  cursor: pointer;
+  position: relative;
+  width: 30em;
+  border-radius: 10px;
+}
+
+.select,
+.label {
+  border-radius: 10px;
+  display: block;
+  font: 400 17px/2em "Source Sans Pro", sans-serif;
+}
+
+.select {
+  width: 100%;
+  border-radius: 10px;
+  position: absolute;
+  top: 10px;
+  padding: 5px 0;
+  height: 40px;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  border: 0 none;
+  transition: opacity 0.3s ease-in-out;
+}
+.select-box1 {
+  background: #ececec;
+}
+
+.label {
+  position: relative;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+.label::after {
+  content: "▼";
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px 15px;
+}
+
+.open .label::after {
+  content: "▲";
+}
+
 @keyframes apperButton {
   0% {
     opacity: 0;
@@ -354,3 +566,43 @@ input[type="checkbox"]:checked::before {
     width: 2em;
   }
 }
+
+@keyframes liquid {
+  0% {
+    border-radius: 25px 50px 25px 50px;
+    scale: 1;
+  }
+  25% {
+    border-radius: 50px 25px 50px 35px;
+    scale: 1.1;
+  }
+  50% {
+    border-radius: 25px 50px 35px 50px;
+    scale: 1;
+  }
+  75% {
+    border-radius: 50px 45px 50px 25px;
+    scale: 0.9;
+  }
+  100% {
+    border-radius: 25px 50px 25px 50px;
+    scale: 1;
+  }
+}
+/* @keyframes liquid {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+} */

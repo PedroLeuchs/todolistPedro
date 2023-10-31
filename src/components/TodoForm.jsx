@@ -16,7 +16,7 @@ const TodoForm = ({ addTodo }) => {
   };
 
   return (
-    <div className="todo-form">
+    <div className="newTodo">
       <h2>Criar Tarefa</h2>
       <form onSubmit={handleSubmit}>
         <input
