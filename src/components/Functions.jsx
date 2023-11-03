@@ -1,62 +1,83 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import TodoForm from "./TodoForm";
-import Search from "./search";
-import Filter from "./filter";
+import Search from "./Search";
+import Filter from "./Filter";
 import icon from "../img/icons/searchIcon.png";
 import icon2 from "../img/icons/filterIcon.png";
 import icon3 from "../img/icons/newTodoIcon.png";
 
 function Functions({ search, setSearch, filter, setFilter, setSort, addTodo }) {
   const [activeComponent, setActiveComponent] = useState(null);
+  const [classListtester, setClassList] = useState(false);
 
   // Função para lidar com o clique em um ícone
   const handleIconClick = (component) => {
-    if (activeComponent === component) {
-      // Se o componente já está ativo, desative-o clicando novamente
-      setActiveComponent(null);
-    } else {
-      // Caso contrário, ative o componente clicado e revele as funções
-      setActiveComponent(component);
-      // Adicione a classe para aplicar a animação
-      document.querySelector(".functions").classList.add("reveal");
-    }
+    setActiveComponent(
+      (prevComponent) => (prevComponent === component ? null : component),
+      setClassList((setClassListPar) =>
+        setClassListPar === classListtester ? true : false
+      )
+    );
   };
 
   return (
-    <div className={`functions ${activeComponent ? "reveal" : ""}`}>
+    <div className="functions">
       <div className="iconContainer">
-        <div className="circle1">
+        <div
+          className={`circle1 ${activeComponent === "search" ? "active" : ""}`}
+          onClick={() => handleIconClick("search")}
+        >
           <img
             className={`icon ${activeComponent === "search" ? "active" : ""}`}
             src={icon}
             alt="Search"
-            onClick={() => handleIconClick("search")}
           />
         </div>
-        {activeComponent === "search" && (
-          <Search search={search} setSearch={setSearch} />
+        {activeComponent === "search" ? (
+          <Search
+            search={search}
+            setSearch={setSearch}
+            classListtester={classListtester}
+          />
+        ) : (
+          <Search />
         )}
-        <div className="circle2">
+        <div
+          className={`circle2 ${activeComponent === "filter" ? "active" : ""}`}
+          onClick={() => handleIconClick("filter")}
+        >
           <img
             className={`icon ${activeComponent === "filter" ? "active" : ""}`}
             src={icon2}
             alt="Filter"
-            onClick={() => handleIconClick("filter")}
           />
         </div>
-        {activeComponent === "filter" && (
-          <Filter filter={filter} setFilter={setFilter} setSort={setSort} />
+        {activeComponent === "filter" ? (
+          <Filter
+            filter={filter}
+            setFilter={setFilter}
+            setSort={setSort}
+            classListtester={classListtester}
+          />
+        ) : (
+          <Filter />
         )}
-        <div className="circle3">
+        <div
+          className={`circle3 ${activeComponent === "newTodo" ? "active" : ""}`}
+          onClick={() => handleIconClick("newTodo")}
+        >
           <img
             className={`icon ${activeComponent === "newTodo" ? "active" : ""}`}
             src={icon3}
             alt="New Todo"
-            onClick={() => handleIconClick("newTodo")}
           />
         </div>
-        {activeComponent === "newTodo" && <TodoForm addTodo={addTodo} />}
+        {activeComponent === "newTodo" ? (
+          <TodoForm addTodo={addTodo} classListtester={classListtester} />
+        ) : (
+          <TodoForm />
+        )}
       </div>
     </div>
   );

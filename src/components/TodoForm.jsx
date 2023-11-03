@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 
-const TodoForm = ({ addTodo }) => {
+const TodoForm = ({ addTodo, classListtester }) => {
   const [selectOpen, setSelectOpen] = useState(false);
   const [value, setValue] = useState("");
   const [category, setCategory] = useState("");
@@ -18,9 +18,15 @@ const TodoForm = ({ addTodo }) => {
   const toggleSelect = () => {
     setSelectOpen(!selectOpen);
   };
-
+  const addClass = (classListtester) => {
+    if (classListtester === true) {
+      return "slideIn";
+    } else {
+      return "slideOut";
+    }
+  };
   return (
-    <div className="newTodo">
+    <div className={`newTodo ${addClass(classListtester)}`}>
       <form onSubmit={handleSubmit}>
         <div className="topNewtd">
           <input
@@ -37,12 +43,12 @@ const TodoForm = ({ addTodo }) => {
             onClick={toggleSelect}
           >
             <label htmlFor="select-box1" className="label select-box1">
-              <span className="label-desc">Selecione uma opção para filtrar</span>
+              <span className="label-desc">
+                Selecione uma opção para filtrar
+              </span>
             </label>
             <select
               value={category}
-              name=""
-              id=""
               className="select"
               onChange={(e) => setCategory(e.target.value)}
             >
@@ -59,4 +65,3 @@ const TodoForm = ({ addTodo }) => {
 };
 
 export default TodoForm;
-

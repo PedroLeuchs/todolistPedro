@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;700&family=Oswald:wght@700&family=Roboto:wght@100;400;900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
 /* Definição de variáveis de cores personalizadas */
 :root {
   --red: #6d1a1a; /* Vermelho */
@@ -15,9 +20,18 @@
 }
 
 @font-face {
-  font-family: "Merriweather Sans", sans-serif;
-  font-family: "Oswald", sans-serif;
-  font-family: "Roboto", sans-serif;
+  font-family: "Merriweather Sans";
+  src: url("URL_DA_FONT_WOFF2") format("woff2");
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url("URL_DA_FONT_WOFF2") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("URL_DA_FONT_WOFF2") format("woff2");
 }
 
 /* Estilo do corpo da página */
@@ -40,13 +54,13 @@ body {
   display: grid;
   grid-template-rows: 1fr 3fr; /* Define as linhas, 1fr para o top e 3fr para o bottom */
   grid-template-columns: 1fr;
-  grid-gap: 2em;
   align-items: start;
   justify-items: center;
 }
 
 /* Estilo do cabeçalho da aplicação */
 .h1 {
+  width: 20%;
   text-align: start;
   margin: 0;
   font-size: 90px;
@@ -60,38 +74,30 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: start;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 20vh;
 }
 
 /* Estilo da seção inferior (bottom) */
 .bottom {
+  height: 80vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 16px;
-  background-color: var(--lista-tarefas-background);
-  color: var(
-    --categoria-text-color
-  ); /* Agora usamos a cor da categoria para o texto da barra de rolagem */
-  border-radius: 10px;
-  padding: 2em;
-  height: 80%;
-  width: 65%;
-  box-shadow: 0px 0px 20px 30px rgba(0, 0, 0, 0.1);
-  overflow-y: scroll;
 }
 
 /* Estilização da barra de rolagem para navegadores WebKit (Chrome, Safari) */
 /* Este bloco de código estiliza a barra de rolagem nas áreas com a classe .bottom */
 
 /* Define a largura da barra de rolagem */
-.bottom::-webkit-scrollbar {
+.todo-list::-webkit-scrollbar {
   width: 12px;
 }
 
 /* Estiliza a área de fundo da barra de rolagem */
-.bottom::-webkit-scrollbar-track {
+.todo-list::-webkit-scrollbar-track {
   /* Define a cor de fundo da área da barra de rolagem */
   border: 1px solid var(--tarefa-text-color);
   background: var(--tarefa-text-color);
@@ -100,7 +106,7 @@ body {
 }
 
 /* Estiliza o "polegar" da barra de rolagem, que é a parte móvel */
-.bottom::-webkit-scrollbar-thumb {
+.todo-list::-webkit-scrollbar-thumb {
   /* Define a cor de fundo do "polegar" usando a cor da categoria da tarefa */
   background: var(--tarefa-id-color);
   /* Aplica um raio de borda arredondada para suavizar a aparência */
@@ -108,7 +114,7 @@ body {
 }
 
 /* Estiliza o "polegar" da barra de rolagem quando o cursor está sobre ele (hover) */
-.bottom::-webkit-scrollbar-thumb:hover {
+.todo-list::-webkit-scrollbar-thumb:hover {
   /* Define a cor de fundo do "polegar" quando hover usando a cor do texto da tarefa */
   background-color: var(--tarefa-background);
 }
@@ -119,12 +125,21 @@ body {
 
 /* Estilo da lista de tarefas (TODOs) */
 .todo-list {
-  width: 100%;
-  height: 100%;
+  overflow-y: scroll;
+  width: 65%;
+  height: 80%;
+  padding: 1em;
   border-radius: 10px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Layout de 3 colunas */
-  grid-gap: 1em; /* Espaçamento entre colunas */
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 1em;
+  background-color: var(--lista-tarefas-background);
+  color: var(
+    --categoria-text-color
+  ); /* Agora usamos a cor da categoria para o texto da barra de rolagem */
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilo dos cards de tarefas (TODOs) */
@@ -367,11 +382,11 @@ input[type="checkbox"]:checked::before {
 
 .functions {
   display: flex;
-  justify-content: right;
+  justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 80%;
   height: 100%;
-  padding: 0 3em 0 0;
+  padding: 0 0 0 0;
 }
 .iconContainer {
   width: 100%;
@@ -379,7 +394,7 @@ input[type="checkbox"]:checked::before {
   display: flex;
   align-items: center;
   justify-content: right;
-  gap: 1em;
+  gap: 0.5em;
   padding: 0.2em;
 }
 
@@ -447,7 +462,6 @@ input[type="checkbox"]:checked::before {
   justify-content: start;
   gap: 2em;
   align-items: center;
-  animation: revealFromRight2 1s forwards;
 }
 .ordem {
   display: flex;
@@ -537,7 +551,6 @@ input[type="checkbox"]:checked::before {
   width: 100%;
   height: 100%;
   padding: 0 0 0 3em;
-  animation: revealFromRight 1s forwards;
 }
 .newTodo form {
   height: 100%;
@@ -560,6 +573,20 @@ input[type="checkbox"]:checked::before {
 }
 .bottomNewtd .select-box {
   width: 70%;
+}
+/* Classe para animação de entrada da direita */
+.slideIn {
+  animation: slideIn 0.5s forwards; /* Aplica a animação slideIn */
+}
+.slideIn2 {
+  animation: slideIn2 0.5s forwards; /* Aplica a animação slideIn */
+}
+/* Classe para animação de saída para a direita */
+.slideOut {
+  animation: slideOut 0.5s forwards; /* Aplica a animação slideOut */
+}
+.slideOut2 {
+  animation: slideOut2 0.5s forwards; /* Aplica a animação slideOut */
 }
 
 @keyframes apperButton {
@@ -626,7 +653,8 @@ input[type="checkbox"]:checked::before {
     scale: 1;
   }
 }
-@keyframes revealFromRight {
+/* Animação de entrada da direita */
+@keyframes slideIn {
   0% {
     width: 0;
     opacity: 0;
@@ -636,7 +664,20 @@ input[type="checkbox"]:checked::before {
     opacity: 1;
   }
 }
-@keyframes revealFromRight2 {
+
+/* Animação de saída para a direita */
+@keyframes slideOut {
+  0% {
+    width: 70%;
+    opacity: 1;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes slideIn2 {
   0% {
     width: 0;
     opacity: 0;
@@ -647,5 +688,19 @@ input[type="checkbox"]:checked::before {
   100% {
     width: 70%;
     opacity: 1;
+  }
+}
+
+@keyframes slideOut2 {
+  0% {
+    width: 70%;
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    width: 0%;
+    opacity: 0;
   }
 }

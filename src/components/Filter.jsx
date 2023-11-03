@@ -1,15 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
-const Filter = ({ filter, setFilter, setSort }) => {
+const Filter = ({ filter, setFilter, setSort, classListtester }) => {
   const [selectOpen, setSelectOpen] = useState(false);
 
   const toggleSelect = () => {
     setSelectOpen(!selectOpen);
   };
+  const addClass = (classListtester) => {
+    if (classListtester === true) {
+      return "slideIn2";
+    } else {
+      return "slideOut2";
+    }
+  };
 
   return (
-    <div className="filter">
+    <div className={`filter ${addClass(classListtester)}`}>
       <div
         className={`select-box ${selectOpen ? "open" : ""}`}
         onClick={toggleSelect}
