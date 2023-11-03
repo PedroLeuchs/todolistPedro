@@ -8,7 +8,8 @@
   --tarefa-text-color: #8da0a4; /* Cor do Texto da Tarefa */
   --categoria-text-color: #5d8a71; /* Cor do Texto da Categoria */
   --tarefa-background: #3a4741; /* Fundo da Tarefa */
-  --lista-tarefas-background: #b0bfc2; /* Fundo de onde estão todas as Tarefas */
+  --lista-tarefas-background: #a6b1ab; /* Fundo de onde estão todas as Tarefas */
+  --lista-tarefas-background-bk: #b0bfc2; /* Fundo de onde estão todas as Tarefas */
   --titulo-color: #648374; /* Cor do Título */
   --border-color: #717476; /* Cor da Borda */
 }
@@ -374,11 +375,11 @@ input[type="checkbox"]:checked::before {
 }
 .iconContainer {
   width: 100%;
-  height: 2em;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: right;
-  gap: 0.5em;
+  gap: 1em;
   padding: 0.2em;
 }
 
@@ -394,9 +395,9 @@ input[type="checkbox"]:checked::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.3em;
-  height: 2.3em;
-  padding: 0.2em;
+  width: 3em;
+  height: 3em;
+  padding: 0.4em;
   background-color: var(--lista-tarefas-background);
   border: 3px transparent var(--border-color);
   border-radius: 25px 30px 25px 50px;
@@ -420,6 +421,7 @@ input[type="checkbox"]:checked::before {
   align-items: center;
   width: 100%;
   height: 100%;
+  animation: revealFromRight 1s forwards;
 }
 .inputSearch {
   background-color: var(--lista-tarefas-background);
@@ -445,6 +447,7 @@ input[type="checkbox"]:checked::before {
   justify-content: start;
   gap: 2em;
   align-items: center;
+  animation: revealFromRight2 1s forwards;
 }
 .ordem {
   display: flex;
@@ -453,7 +456,8 @@ input[type="checkbox"]:checked::before {
   gap: 0.5em;
   flex-direction: column;
 }
-.ordem button {
+.ordem button,
+.newTodo button {
   background-color: var(--categoria-text-color);
   border-radius: 100px;
   box-shadow: 0 3px 0 rgb(255 255 255 / 50%), 0 3px 0 rgb(0 0 0 / 7%) inset;
@@ -472,7 +476,8 @@ input[type="checkbox"]:checked::before {
   touch-action: manipulation;
 }
 
-.ordem button:hover {
+.ordem button:hover,
+.newTodo button:hover {
   box-shadow: 0 3px 0 rgb(255 255 255 / 50%), 0 3px 0 rgb(0 0 0 / 7%) inset;
   transform: scale(1.05);
 }
@@ -523,6 +528,38 @@ input[type="checkbox"]:checked::before {
 
 .open .label::after {
   content: "▲";
+}
+
+.newTodo {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 0 0 3em;
+  animation: revealFromRight 1s forwards;
+}
+.newTodo form {
+  height: 100%;
+}
+.topNewtd {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
+  height: 50%;
+  padding: 0 0 1em 0;
+}
+.bottomNewtd {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  width: 100%;
+  height: 50%;
+  padding: 0.5em 0 0 0;
+}
+.bottomNewtd .select-box {
+  width: 70%;
 }
 
 @keyframes apperButton {
@@ -589,20 +626,26 @@ input[type="checkbox"]:checked::before {
     scale: 1;
   }
 }
-/* @keyframes liquid {
+@keyframes revealFromRight {
   0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(90deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  75% {
-    transform: rotate(270deg);
+    width: 0;
+    opacity: 0;
   }
   100% {
-    transform: rotate(0deg);
+    width: 70%;
+    opacity: 1;
   }
-} */
+}
+@keyframes revealFromRight2 {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    width: 70%;
+    opacity: 1;
+  }
+}

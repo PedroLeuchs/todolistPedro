@@ -16,13 +16,15 @@ function Functions({ search, setSearch, filter, setFilter, setSort, addTodo }) {
       // Se o componente já está ativo, desative-o clicando novamente
       setActiveComponent(null);
     } else {
-      // Caso contrário, ative o componente clicado
+      // Caso contrário, ative o componente clicado e revele as funções
       setActiveComponent(component);
+      // Adicione a classe para aplicar a animação
+      document.querySelector(".functions").classList.add("reveal");
     }
   };
 
   return (
-    <div className="functions">
+    <div className={`functions ${activeComponent ? "reveal" : ""}`}>
       <div className="iconContainer">
         <div className="circle1">
           <img
@@ -53,8 +55,8 @@ function Functions({ search, setSearch, filter, setFilter, setSort, addTodo }) {
             alt="New Todo"
             onClick={() => handleIconClick("newTodo")}
           />
-          {activeComponent === "newTodo" && <TodoForm addTodo={addTodo} />}
         </div>
+        {activeComponent === "newTodo" && <TodoForm addTodo={addTodo} />}
       </div>
     </div>
   );

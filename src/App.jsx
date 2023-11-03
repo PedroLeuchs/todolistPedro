@@ -132,7 +132,13 @@ function App() {
   };
 
   const getBackgroundColor = (todo) => {
-    return todo.completed ? "green" : ""; // Retorna "green" quando a tarefa estiver completa, vazio caso contrário
+    if (todo.completed === true) {
+      var checkbox = document.querySelector("input[name=checkbox]");
+      checkbox.checked = true;
+      return "green";
+    }
+
+    // Retorna "green" quando a tarefa estiver completa, vazio caso contrário
   };
 
   const [search, setSearch] = useState("");
